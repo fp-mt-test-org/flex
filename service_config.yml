@@ -1,5 +1,5 @@
 flex:
-  version: 0.1.0
+  version: 0.1.1
   workflows:
     build:
       command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
@@ -10,4 +10,4 @@ flex:
       - build
       - test
 service:
-  name: devx-workflows
+  name: flex
