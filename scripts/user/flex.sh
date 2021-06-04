@@ -79,7 +79,11 @@ if [[ "${should_install_flex:=0}" == "1" ]]; then
     install_flex
 fi
 
+echo "Getting current flex version with: ${flex_version_command}"
+
 initial_flex_version=$(${flex_version_command})
+
+echo "initial_flex_version: ${initial_flex_version}"
 
 # Check the service_config, if it exists (i.e. is not first run of flex)
 if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then

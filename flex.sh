@@ -14,7 +14,6 @@ flex_install_path='./.flex'
 flex_binary_path="${flex_install_path}/flex"
 flex_version_command="${flex_binary_path} -version"
 service_config_path='./service_config.yml'
-should_install_flex="0"
 
 install_flex() {
     version_to_install="${1:-latest}"
@@ -62,7 +61,7 @@ install_flex() {
     echo "Configuring the local host..."
     "${user_scripts_install_path}/configure-localhost.sh"
 
-    if [ "${auto_clean:=0}" == "1" ]; then
+    if [ "${auto_clean:=1}" == "1" ]; then
         echo "Cleaning up ${download_file_path}"
         rm -fdr "${download_file_path}"
     fi
@@ -76,11 +75,15 @@ if ! [[ -d "${flex_install_path}" ]]; then
     should_install_flex="1"
 fi
 
-if [[ "${should_install_flex}" == "1" ]]; then
+if [[ "${should_install_flex:=0}" == "1" ]]; then
     install_flex
 fi
 
+echo "Getting current flex version with: ${flex_version_command}"
+
 initial_flex_version=$(${flex_version_command})
+
+echo "initial_flex_version: ${initial_flex_version}"
 
 # Check the service_config, if it exists (i.e. is not first run of flex)
 if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
