@@ -111,9 +111,6 @@ if [ -d "${helloworld_repo_folder_path}" ]; then
     rm -rdf "${helloworld_repo_folder_path}"
 fi
 
-# Waiting for a release.
-exit 0
-
 echo ""
 echo "========================="
 echo "TEST: Update Version Flow"
@@ -129,6 +126,7 @@ if [ -d "${repo_name}" ]; then
 fi
 
 expected_flex_version=$(git describe --abbrev=0 --tags)
+expected_flex_version="${expected_flex_version:1}" # Removes the 'v' prefix.
 echo "expected_flex_version: ${expected_flex_version}"
 echo ""
 echo "Cloning a repo that has flex already initialized..."
