@@ -2,6 +2,6 @@
 *.gz
 .DS_Store
 dist/
-.devx-workflows
-devx-workflows-test-empty-repo
-devx-workflows-test-upgrade
+.flex
+flex-test-empty-repo
+flex-test-upgrade

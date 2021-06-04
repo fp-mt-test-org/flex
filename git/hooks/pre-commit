@@ -1,0 +1,10 @@
+#!/bin/sh
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+default_branch="$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
+
+if [ "$branch" = "$default_branch" ]; then
+   echo "The $default_branch branch should not be committed to directly, please create a branch for these changes."
+   exit 1
+fi
