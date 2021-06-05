@@ -43,12 +43,6 @@ First thing to know is that Flex is used to build and test itself.
 
 To build and install a new version of flex, execute the build script:
 
-    auto_install=1 ./scripts/build-flex.sh
-
-This will compile, unit test and update the binaries in the `.flex` directory.
-
-Once you have flex built, you can then use flex to build itself:
-
     flex build
 
 ### Feature Test
@@ -58,9 +52,3 @@ Unit tests are great, but they don't mean the features are working!
 To execute feature tests, execute the test workflow:
 
     flex test
-
-### Build & Feature Test
-
-Instead of running build and then test separately, you can use a single command:
-
-    flex build-test
