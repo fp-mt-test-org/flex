@@ -13,16 +13,19 @@ user_scripts_install_path="${install_path}/scripts/user"
 flex_binary_path="${flex_install_path}/flex"
 flex_version_command="${flex_binary_path} -version"
 
-echo "Checking for a new version of ${flex_script}"
+running_script_path="./${flex_script}"
+latest_script_path="${user_scripts_install_path}/${flex_script}"
 
-running_script_contents=$(cat "${flex_script}")
-latest_script_contents=$(cat "${user_scripts_install_path}/${flex_script}")
+if [[ -f "${latest_script_path}" ]]; then
+    running_script_contents=$(cat "${flex_script}")
+    latest_script_contents=$(cat "${latest_script_path}")
 
-if [[ "${running_script_contents}" != "${latest_script_contents}" ]]; then
-    echo "There's a new version!"
-    cp -v "${user_scripts_install_path}/${flex_script}" .
-    ./${flex_script} "$@"
-    exit 0
+    if [[ "${running_script_contents}" != "${latest_script_contents}" ]]; then
+        echo "There's a new version of this script, switching!"
+        cp -v "${latest_script_path}" .
+        ${running_script_path} "$@"
+        exit 0
+    fi
 fi
 
 # echo ""
