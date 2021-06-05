@@ -131,11 +131,11 @@ if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
         configured_flex_version_regex=".*${configured_flex_version}.*"
 
         if ! [[ "${initial_flex_version}" =~ ${configured_flex_version_regex} ]]; then
-            echo "Current version is different than configured, upgrading..."
+            echo "Current version is different than configured, updating..."
             install_flex "${configured_flex_version}"
             echo "Current version is now:"
             ${flex_version_command}
-            echo "Upgrade complete."
+            echo "Update complete."
         fi
     fi
 fi
