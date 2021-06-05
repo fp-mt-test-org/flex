@@ -98,13 +98,17 @@ if [[ -f "${service_config_path}" ]]; then
     version_to_install=$(get_configured_version)
     #echo "Configured version is ${version_to_install}"
 else
-    if [[ "$1" != "init" ]]; then
+    if [[ "${1=}" != "init" ]]; then
         echo "${service_config_path} doesn't exist, to initialize please run: flex init"
         exit 1
     fi
 fi
 
 if [[ "${should_install_flex:=0}" == "1" ]]; then
+    value="${version_to_install:=latest}"
+    echo "-----"
+    echo "VALUE: ${value}"
+    echo "-----"
     install_flex "${version_to_install:=latest}"
 fi
 
