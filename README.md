@@ -34,7 +34,6 @@ You can see the version of flex like so:
 2. Set branch protection rules on your fork to require PRs for main
 3. Clone this repository
 4. Configure your remotes: `git remote set-url --push origin your-fork-url-here`
-5. Setup dependencies on your machine: `./scripts/setup-dev-dependencies.sh`
 
 ### Basics
 
@@ -59,3 +58,9 @@ Unit tests are great, but they don't mean the features are working!
 To execute feature tests, execute the test workflow:
 
     flex test
+
+### Build & Feature Test
+
+Instead of running build and then test separately, you can use a single command:
+
+    flex build-test

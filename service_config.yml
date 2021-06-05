@@ -1,13 +1,14 @@
 flex:
-  version: 0.1.3
+  version: 0.1.5
   workflows:
+    dev-setup:
+      command: ./scripts/setup-dev-dependencies.sh
     build:
+      depends-on:
+        - dev-setup
       command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
     test:
+      depends-on: build
       command: ./scripts/test-flex.sh
-    build-test:
-      depends-on:
-      - build
-      - test
 service:
   name: flex
