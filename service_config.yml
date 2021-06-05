@@ -1,6 +1,8 @@
 flex:
   version: 0.1.5
   workflows:
+    pull:
+      command: git pull --tags
     dev-setup:
       command: ./scripts/setup-dev-dependencies.sh
     build:
