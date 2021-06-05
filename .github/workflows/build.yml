@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 0
 
     - name: Flex Build & Unit, Feature Test
-      run: ./scripts/setup-dev-dependencies.sh && ./scripts/build-flex.sh
+      run: $flex test
 
     - name: Publish Release
       run: GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} dry_run=0 scripts/release-flex.sh
