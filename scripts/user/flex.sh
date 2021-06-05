@@ -4,6 +4,27 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
+flex_script='flex.sh'
+auto_update="${auto_update:-0}"
+service_config_path='./service_config.yml'
+install_folder_name='.flex'
+flex_install_path="${install_path:=$(realpath ${install_folder_name})}"
+user_scripts_install_path="${install_path}/scripts/user"
+flex_binary_path="${flex_install_path}/flex"
+flex_version_command="${flex_binary_path} -version"
+
+echo "Checking for a new version of ${flex_script}"
+
+running_script_contents=$(cat "${flex_script}")
+latest_script_contents=$(cat "${user_scripts_install_path}/${flex_script}")
+
+if [[ "${running_script_contents}" != "${latest_script_contents}" ]]; then
+    echo "There's a new version!"
+    cp -v "${user_scripts_install_path}/${flex_script}" .
+    ./${flex_script} "$@"
+    exit 0
+fi
+
 # echo ""
 # echo "CURRENT DIR:"
 # pwd
@@ -12,19 +33,11 @@ set -o nounset
 # echo "$@"
 # echo ""
 
-auto_update="${auto_update:-0}"
-flex_install_path='./.flex'
-flex_binary_path="${flex_install_path}/flex"
-flex_version_command="${flex_binary_path} -version"
-service_config_path='./service_config.yml'
-
 install_flex() {
     version_to_install="${1:-latest}"
     skip_download=${skip_download:=0}
     download_folder_path="${download_folder_path:=$(realpath dist)}"
-    install_folder_name='.flex'
-    install_path="${install_path:=$(realpath ${install_folder_name})}"
-    user_scripts_install_path="${install_path}/scripts/user"
+
 
     echo "Installing flex version $version_to_install!"
 
@@ -51,8 +64,8 @@ install_flex() {
     echo "Extracting ${download_file_path} to ${install_path}"
     tar -xvf "${download_file_path}" -C "${install_path}"
 
-    echo "Copying flex wrapper to repo root..."
-    cp "${user_scripts_install_path}/flex.sh" .
+    # echo "Copying flex wrapper to repo root..."
+    # cp "${user_scripts_install_path}/flex.sh" .
 
     git_ignore_file='.gitignore'
 
