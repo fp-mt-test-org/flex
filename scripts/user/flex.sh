@@ -28,14 +28,6 @@ if [[ -f "${latest_script_path}" ]]; then
     fi
 fi
 
-# echo ""
-# echo "CURRENT DIR:"
-# pwd
-# echo ""
-# echo "PARAMS:"
-# echo "$@"
-# echo ""
-
 install_flex() {
     version_to_install="${1:-latest}"
     skip_download=${skip_download:=0}
@@ -66,9 +58,6 @@ install_flex() {
 
     echo "Extracting ${download_file_path} to ${install_path}"
     tar -xvf "${download_file_path}" -C "${install_path}"
-
-    # echo "Copying flex wrapper to repo root..."
-    # cp "${user_scripts_install_path}/flex.sh" .
 
     git_ignore_file='.gitignore'
 
