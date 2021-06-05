@@ -1,5 +1,5 @@
 flex:
-  version: 0.1.1
+  version: 0.1.3
   workflows:
     build:
       command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
