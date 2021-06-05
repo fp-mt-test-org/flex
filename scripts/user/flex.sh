@@ -23,8 +23,7 @@ if [[ -f "${latest_script_path}" ]]; then
     if [[ "${running_script_contents}" != "${latest_script_contents}" ]]; then
         echo "There's a new version of this script, switching!"
         cp -v "${latest_script_path}" .
-        ${running_script_path} "$@"
-        exit 0
+        ${running_script_path} "$@" | exit 0
     fi
 fi
 
