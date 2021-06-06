@@ -1,1 +1,1 @@
-alias flex=./.devx-workflows/scripts/user/run-flex.sh
+alias flex=./flex.sh

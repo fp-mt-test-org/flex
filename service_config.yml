@@ -1,13 +1,16 @@
 flex:
-  version: 0.1.0
+  version: 0.1.1
   workflows:
+    pull:
+      command: git pull --tags
+    dev-setup:
+      command: ./scripts/setup-dev-dependencies.sh
     build:
+      depends-on:
+        - dev-setup
       command: auto_install=1 auto_clean=0 ./scripts/build-flex.sh
     test:
+      depends-on: build
       command: ./scripts/test-flex.sh
-    build-test:
-      depends-on:
-      - build
-      - test
 service:
-  name: devx-workflows
+  name: flex

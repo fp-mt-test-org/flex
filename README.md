@@ -1,8 +1,12 @@
-# Flex
+# What is Flex?
 
 Flex is a CLI & config driven x-plat tool for defining and executing workflows.
 
-Similar to tools such as Make, however it's not tightly coupled to software build tools and can be used to execute any CLI tasks, including but not limited to building and testing code.
+Similar to tools such as Make, however it's not tightly coupled to heavy software development tools and can be used to execute any CLI tasks, including but not limited to building and testing code.
+
+#### Docs
+- [How to Use](#usage)
+- [How to Develop](#working-on-flex)
 
 ## Usage
 
@@ -12,7 +16,7 @@ To install into a repository:
 
 1. From the root of your repo, execute:
 ```
-bash -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
+bash -c "$(curl -fsSL https://github.com/fp-mt-test-org/flex/releases/latest/download/flex.sh)"
 ```
 3. Run `flex init`
 
@@ -22,26 +26,22 @@ You can see the version of flex like so:
 
     flex -version
 
-## Working on the Workflow Scripts
+## Working on Flex
 
 ### Getting Started
 
-1. Clone this repository.
-2. Configure: `./scripts/setup-dev-dependencies.sh`
+1. Fork this repository
+2. Set branch protection rules on your fork to require PRs for main
+3. Clone this repository
+4. Configure your remotes: `git remote set-url --push origin your-fork-url-here`
 
 ### Basics
 
-First thing to know is that the workflow scripts are used to build and test themselves.
+First thing to know is that Flex is used to build and test itself.
 
 ### Build & Unit Test
 
-To build and install a new version of flex, execute the build workflow:
-
-    auto_install=1 ./scripts/build-flex.sh
-
-This will compile, unit test and update the binaries in the `.devx-workflows` directory.
-
-Once you have flex built, you can then use flex to build itself:
+To build and install a new version of flex, execute the build script:
 
     flex build
 

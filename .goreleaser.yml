@@ -21,9 +21,9 @@ archives:
       - scripts/user/*
 release:
   github:
-    owner: fp-mt-test-org    
+    owner: fp-mt-test-org
     name: flex
   extra_files:
-    - glob: ./scripts/user/install-flex.sh
+    - glob: ./scripts/user/flex.sh
 changelog:
   sort: asc

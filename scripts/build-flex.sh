@@ -32,5 +32,13 @@ echo "Build completed!"
 if [ "${auto_install:=0}" == "1" ]; then
     echo ""
     echo "Auto installing..."
-    skip_download=1 download_folder_path="${distribution_folder_path}" "${user_scripts_dist_path}/install-flex.sh"
+
+    # Delete old cached version so new build gets loaded.
+    rm -fdr ./.flex
+
+    should_install_flex=1 \
+        skip_download=1 \
+        download_folder_path="${distribution_folder_path}" \
+        ./flex.sh -version
+    echo "Auto install completed."
 fi
