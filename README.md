@@ -1,6 +1,6 @@
 # What is Flex?
 
-Flex is a CLI & config driven x-plat tool for defining and executing workflows.
+Flex is a x-plat CLI tool for defining and executing configurable workflows.
 
 Similar to tools such as Make, however it's not tightly coupled to heavy software development tools and can be used to execute any CLI tasks, including but not limited to building and testing code.
 
