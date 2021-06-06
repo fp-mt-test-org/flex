@@ -147,7 +147,7 @@ echo "Step 2. Test: Configure version to latest built version"
 service_config_path='service_config.yml'
 service_config=$(cat "${service_config_path}")
 echo "${service_config}"
-service_config="${service_config/0.1.3/$expected_flex_version}"
+service_config="${service_config/0.1.1/$expected_flex_version}"
 echo "${service_config}" > "${service_config_path}"
 
 echo "Step 3. Test: Run flex -version again:"
