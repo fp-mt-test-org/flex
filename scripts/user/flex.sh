@@ -39,7 +39,7 @@ install_flex() {
     # Generate the platform specific file name to download.
     os=$(uname | tr '[:upper:]' '[:lower:]')
     file_name="flex_${os}_amd64.tar.gz"
-    base_url='https://github.com/fp-mt/flex/releases'
+    base_url='https://github.com/fp-mt-test-org/flex/releases'
     if [[ "${version_to_install}" == "latest" ]]; then
         url="${base_url}/latest/download/${file_name}"
     else

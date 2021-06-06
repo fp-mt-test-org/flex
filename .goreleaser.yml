@@ -21,7 +21,7 @@ archives:
       - scripts/user/*
 release:
   github:
-    owner: fp-mt    
+    owner: fp-mt-test-org
     name: flex
   extra_files:
     - glob: ./scripts/user/flex.sh

@@ -6,6 +6,8 @@ set -o nounset
 
 current_path=$(realpath .)
 
+git_org_base_url='https://github.com/fp-mt-test-org'
+
 dist_folder_name='dist'
 dist_folder_path="${current_path}/${dist_folder_name}"
 dist_user_scripts_path="${dist_folder_path}/scripts/user"
@@ -49,7 +51,7 @@ if [ -d "${helloworld_repo_folder_path}" ]; then
 fi
 
 echo "Cloning a blank repo..."
-git clone https://github.com/fp-mt/${helloworld_repo_name}.git
+git clone "${git_org_base_url}/${helloworld_repo_name}.git"
 echo "Clone complete."
 echo ""
 
@@ -130,7 +132,7 @@ expected_flex_version="${expected_flex_version:1}" # Removes the 'v' prefix.
 echo "expected_flex_version: ${expected_flex_version}"
 echo ""
 echo "Cloning a repo that has flex already initialized..."
-git clone https://github.com/fp-mt/${repo_name}.git
+git clone "${git_org_base_url}/${repo_name}.git"
 echo "Clone complete."
 echo ""
 

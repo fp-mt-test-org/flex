@@ -6,8 +6,8 @@ metadata:
   tags:
     - go
   annotations:
-    github.com/project-slug: fp-mt/flex
-    backstage.io/techdocs-ref: url:https://github.com/fp-mt/flex
+    github.com/project-slug: fp-mt-test-org/flex
+    backstage.io/techdocs-ref: url:https://github.com/fp-mt-test-org/flex
 spec:
   type: library
   lifecycle: experimental

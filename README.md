@@ -16,7 +16,7 @@ To install into a repository:
 
 1. From the root of your repo, execute:
 ```
-bash -c "$(curl -fsSL https://github.com/fp-mt/flex/releases/latest/download/flex.sh)"
+bash -c "$(curl -fsSL https://github.com/fp-mt-test-org/flex/releases/latest/download/flex.sh)"
 ```
 3. Run `flex init`
 
