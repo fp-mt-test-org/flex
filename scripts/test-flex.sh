@@ -32,12 +32,15 @@ fi
 
 install_flex() {
     install_to='.'
+    install_flex_path="./${flex_wrapper_script}"
 
     flex_wrapper_script_install_from="${dist_user_scripts_path}/${flex_wrapper_script}"
 
     echo "Simulate downloading the Flex wrapper script from ${flex_wrapper_script_install_from} to ${install_to}"
-    cp -v "${flex_wrapper_script_install_from}" "${install_to}"
-    echo ""
+    # Note: this command should come from the install step in the README.md.
+    cp -v "${flex_wrapper_script_install_from}" . && \
+        chmod a+x "${install_flex_path}" && \
+        skip_download=1 download_folder_path="${dist_folder_path}" auto_clean=0 "${install_flex_path}"
 }
 
 echo ""
