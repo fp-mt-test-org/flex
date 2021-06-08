@@ -33,7 +33,6 @@ install_flex() {
     skip_download=${skip_download:=0}
     download_folder_path="${download_folder_path:=$(realpath dist)}"
 
-
     echo "Installing flex version $version_to_install!"
 
     # Generate the platform specific file name to download.
