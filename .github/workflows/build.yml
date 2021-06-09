@@ -16,7 +16,9 @@ jobs:
 
     steps:
     - name: Checkout Source
-      run: $flex pull
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Flex Build & Unit, Feature Test
       run: $flex test
