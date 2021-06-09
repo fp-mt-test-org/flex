@@ -39,6 +39,10 @@ You can see the version of flex like so:
 
 First thing to know is that Flex is used to build and test itself.
 
+### Pull Latest Source & Tags
+
+    flex pull
+
 ### Build & Unit Test
 
 To build and install a new version of flex, execute the build script:
@@ -52,3 +56,7 @@ Unit tests are great, but they don't mean the features are working!
 To execute feature tests, execute the test workflow:
 
     flex test
+
+### Push Changes w/ Validation
+
+    flex push
