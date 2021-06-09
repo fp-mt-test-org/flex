@@ -15,4 +15,5 @@ if ! [[ "${git_status}" =~ "nothing to commit, working tree clean" ]]; then
     exit 1
 fi
 
+git push
 git push --tags
