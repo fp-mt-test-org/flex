@@ -5,7 +5,7 @@ set -o pipefail
 set -o nounset
 
 flex_script='flex.sh'
-auto_update="${auto_update:-0}"
+auto_update="${auto_update:-1}"
 service_config_path='./service_config.yml'
 install_folder_name='.flex'
 flex_install_path="${install_path:=$(realpath ${install_folder_name})}"
@@ -135,7 +135,7 @@ if [[ "${auto_update}" == "1" ]] && [[ -f "${service_config_path}" ]]; then
         configured_flex_version_regex=".*${configured_flex_version}.*"
 
         if ! [[ "${initial_flex_version}" =~ ${configured_flex_version_regex} ]]; then
-            echo "Current version is different than configured, updating..."
+            echo "Current version ${initial_flex_version} is different than configured ${configured_flex_version}, updating..."
             install_flex "${configured_flex_version}"
             echo "Current version is now:"
             ${flex_version_command}

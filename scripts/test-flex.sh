@@ -149,12 +149,17 @@ echo ""
 echo "Step 2. Test: Configure version to latest built version"
 service_config_path='service_config.yml'
 service_config=$(cat "${service_config_path}")
+echo "Current service_config:"
 echo "${service_config}"
-service_config="${service_config/0.2.0/$expected_flex_version}"
+echo ""
+echo "Updated service_config:"
+service_config="${service_config/${actual_flex_version}/$expected_flex_version}"
+echo "${service_config}"
 echo "${service_config}" > "${service_config_path}"
-
+echo ""
 echo "Step 3. Test: Run flex -version again:"
-actual_flex_version=$(skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" ${flex} -version)
+skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" ${flex} -version
+actual_flex_version=$(${flex} -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo ""
 echo "Step 4. Test: Assert actual contains configured"
