@@ -2,7 +2,7 @@ flex:
   version: 0.2.5
   workflows:
     pull:
-      command: git pull --tags
+      command: git pull origin main --tags
     dev-setup:
       command: ./scripts/setup-dev-dependencies.sh
     build:
@@ -12,5 +12,10 @@ flex:
     test:
       depends-on: build
       command: ./scripts/test-flex.sh
+    push:
+      depends-on:
+        - pull
+        - test
+      command: ./scripts/push.sh
 service:
   name: flex
