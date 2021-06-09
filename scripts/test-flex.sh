@@ -128,41 +128,44 @@ cd "${current_path}"
 if [ -d "${repo_name}" ]; then
     echo "Pre-test Cleanup: Clearing out the test repo if left over from previous test..."
     rm -rdf "${repo_name}"
+    echo ""
 fi
 
+echo "Step 1: Clone a repo that has previously installed and initialized with an older version of flex."
+echo ""
 expected_flex_version=$(git describe --abbrev=0 --tags)
 expected_flex_version="${expected_flex_version:1}" # Removes the 'v' prefix.
 echo "expected_flex_version: ${expected_flex_version}"
 echo ""
-echo "Cloning a repo that has flex already initialized..."
 git clone "${git_org_base_url}/${repo_name}.git"
-echo "Clone complete."
 echo ""
 
+# Change in to the repo so all cli commands issued will be relative to it.
 cd "${repo_name}"
 
-echo "Step 1. Test: Get currently configured/installed version"
-skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" ${flex} -version
-actual_flex_version=$(${flex} -version)
-echo "actual_flex_version: ${actual_flex_version}"
+echo "Step 2. Install the configured version of flex by running the wrapper script"
+${flex} -version
 echo ""
-echo "Step 2. Test: Configure version to latest built version"
+
+echo "Step 3. Test: Configure version to latest built version"
 service_config_path='service_config.yml'
 service_config=$(cat "${service_config_path}")
 echo "Current service_config:"
 echo "${service_config}"
 echo ""
 echo "Updated service_config:"
-service_config="${service_config/${actual_flex_version}/$expected_flex_version}"
+service_config="${service_config/0.3.0/$expected_flex_version}"
 echo "${service_config}"
 echo "${service_config}" > "${service_config_path}"
 echo ""
-echo "Step 3. Test: Run flex -version again:"
-skip_download=1 auto_clean=0 download_folder_path="${dist_folder_path}" ${flex} -version
+
+echo "Step 4. Install latest built version of flex"
+skip_download=1 auto_update=1 auto_clean=0 download_folder_path="${dist_folder_path}" ${flex} -version
 actual_flex_version=$(${flex} -version)
 echo "actual_flex_version: ${actual_flex_version}"
 echo ""
-echo "Step 4. Test: Assert actual contains configured"
+
+echo "Step 5. Test: Assert actual contains configured"
 echo "expected_flex_version: ${expected_flex_version}, actual_flex_version: ${actual_flex_version}"
 if ! [[ "${actual_flex_version}" =~ ${expected_flex_version} ]]; then
     echo "Fail: Output does not contain expected_flex_version: ${expected_flex_version}"

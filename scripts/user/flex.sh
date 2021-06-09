@@ -58,6 +58,14 @@ install_flex() {
     echo "Extracting ${download_file_path} to ${install_path}"
     tar -xvf "${download_file_path}" -C "${install_path}"
 
+    if [[ "${version_to_install}" != "latest" ]] && [[ -f "${service_config_path}" ]]; then
+        echo "Updating version in ${service_config_path} to ${version_to_install}"
+        service_config_content=$(cat ${service_config_path})
+        updated_service_config_content="${service_config_content/0.3.0/${version_to_install}}"
+        echo "${updated_service_config_content}" > "${service_config_path}"
+        echo "${service_config_path} updated!"
+    fi
+
     git_ignore_file='.gitignore'
 
     if ! grep -qs "${install_folder_name}" "${git_ignore_file}"; then
