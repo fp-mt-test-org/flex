@@ -1,5 +1,5 @@
 flex:
-  version: 0.5.1
+  version: 0.5.2
   workflows:
     pull:
       command: git pull origin main --tags

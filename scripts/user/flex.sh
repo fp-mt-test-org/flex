@@ -31,7 +31,7 @@ fi
 install_flex() {
     version_to_install="${1:-latest}"
     skip_download=${skip_download:=0}
-    download_folder_path="${download_folder_path:=$(./dist)}"
+    download_folder_path="${download_folder_path:=./dist}"
 
     echo "Installing flex version $version_to_install!"
 
