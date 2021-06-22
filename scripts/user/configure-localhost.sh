@@ -13,7 +13,7 @@ script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 flex_alias=$(cat "${script_path}/configure-alias.sh")
 
 if ! grep -q "${flex_alias}" "${profile_path}"; then
-    profile_content=$(cat ${profile_path})
+    profile_content=$(cat ${profile_path}) 2>/dev/null
     # Save it to the profile so it's execute for each shell session.
     echo -e "${flex_alias}\n${profile_content}" > "${profile_path}"
 
