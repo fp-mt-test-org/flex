@@ -8,9 +8,9 @@ flex_script='flex.sh'
 auto_update="${auto_update:-1}"
 service_config_path='./service_config.yml'
 install_folder_name='.flex'
-flex_install_path="${install_path:=$(realpath ${install_folder_name})}"
+install_path="./${install_folder_name}"
 user_scripts_install_path="${install_path}/scripts/user"
-flex_binary_path="${flex_install_path}/flex"
+flex_binary_path="${install_path}/flex"
 flex_version_command="${flex_binary_path} -version"
 
 running_script_path="./${flex_script}"
@@ -99,8 +99,8 @@ get_configured_version() {
 
 #echo "Checking if Flex needs to be installed, updated or initialized..."
 
-if ! [[ -d "${flex_install_path}" ]]; then
-    #echo "${flex_install_path} not found locally, Flex needs to be installed."
+if ! [[ -d "${install_path}" ]]; then
+    #echo "${install_path} not found locally, Flex needs to be installed."
     should_install_flex="1"
 fi
 
