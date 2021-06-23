@@ -78,7 +78,7 @@ install_flex() {
 
     if [ "${auto_clean:=1}" == "1" ]; then
         echo "Cleaning up ${download_file_path}"
-        rm -fdr "${download_file_path}"
+        rm "${download_file_path}"
     fi
 
     echo "Installation complete!"
