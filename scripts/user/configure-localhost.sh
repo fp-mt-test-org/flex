@@ -15,6 +15,7 @@ flex_alias=$(cat "${script_path}/configure-alias.sh")
 update_profile() {
     profile_path="${1}"
     flex_alias="${2}"
+    profile_content="${3}"
 
     echo -e "${flex_alias}\n${profile_content}" > "${profile_path}"
     echo "Added ${flex_alias} to your ${profile_path}"
@@ -27,8 +28,8 @@ update_profile() {
 if [[ -f "${profile_path}" ]]; then
     if ! grep -q "${flex_alias}" "${profile_path}" ; then
         profile_content=$(cat "${profile_path}") 
-        update_profile "${profile_path}" "${flex_alias}"
+        update_profile "${profile_path}" "${flex_alias}" "${profile_content}"
     fi
 else
-    update_profile "${profile_path}" "${flex_alias}"
+    update_profile "${profile_path}" "${flex_alias}" ""
 fi
